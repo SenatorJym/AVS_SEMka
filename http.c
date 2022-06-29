@@ -193,7 +193,12 @@ char * postResolver(char * message, int length, int * response, char * strToSend
 
     strToSend = malloc(strlen(bodyFounder) + 1);
     strncpy(strToSend, bodyFounder, strlen(bodyFounder) + 1);
-    return jsonSet(strToSend);
+    if((strToSend = jsonSet(strToSend)) == NULL) {
+        printf("Wrong content.\n");
+        *response = 400;
+        return NULL;
+    }
+    return strToSend;
 }
 
 int requestLineVerifier(char * requestLine, int length, int * response) {

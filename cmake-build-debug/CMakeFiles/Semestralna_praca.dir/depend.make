@@ -4,6 +4,10 @@
 CMakeFiles/Semestralna_praca.dir/http.c.o: ../defines.h
 CMakeFiles/Semestralna_praca.dir/http.c.o: ../http.c
 CMakeFiles/Semestralna_praca.dir/http.c.o: ../http.h
+CMakeFiles/Semestralna_praca.dir/http.c.o: ../json.h
+
+CMakeFiles/Semestralna_praca.dir/json.c.o: ../defines.h
+CMakeFiles/Semestralna_praca.dir/json.c.o: ../json.c
 
 CMakeFiles/Semestralna_praca.dir/main.c.o: ../defines.h
 CMakeFiles/Semestralna_praca.dir/main.c.o: ../http.h
