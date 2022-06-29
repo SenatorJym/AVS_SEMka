@@ -43,9 +43,16 @@ char * httpResolver(char * message, int length, char * strToSend) {
 }
 
 char * httpResponse(int statusCode, char * messageToBeSent) {
-    int bodySize = (int)(strlen(messageToBeSent) + 1);
+    int bodySize = 0;
+    if(messageToBeSent == NULL) {
+        bodySize = 0;
+    } else {
+        bodySize = (int)(strlen(messageToBeSent) + 1);
+    }
     char tempMessage[bodySize];
-    strncpy(tempMessage, messageToBeSent, bodySize);
+    if(bodySize > 0) {
+        strncpy(tempMessage, messageToBeSent, bodySize);
+    }
 
     free(messageToBeSent);
     messageToBeSent = NULL;
@@ -203,7 +210,8 @@ char * postResolver(char * message, int length, int * response, char * strToSend
 int requestLineVerifier(char * requestLine, int length, int * response) {
     char tmpString[length];
     strncpy(tmpString, requestLine, length);
-    char * token = strtok(tmpString, " ");
+    char * token = NULL;
+    token = strtok(tmpString, " ");
     token = strtok(NULL, " ");
     if(uriVerifier(token, (int)strlen(token)) == ERROR) {
         printf("wrong_uri\n");
@@ -211,7 +219,7 @@ int requestLineVerifier(char * requestLine, int length, int * response) {
         return ERROR;
     }
     token = strtok(NULL, " ");
-    if(strncmp(token, SUPPORTED_HTTP, sizeof(SUPPORTED_HTTP)) != SUCCESS) {
+    if(strncmp(token, SUPPORTED_HTTP, strlen(SUPPORTED_HTTP)) != SUCCESS) {
         printf("http not supported");
         *response = 505;
         return ERROR;

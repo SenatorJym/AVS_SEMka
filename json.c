@@ -87,7 +87,7 @@ char* jsonSet(char* jsonMessage) {
     char* ipMaskCopy = malloc(20*sizeof(char));
     char ip_address[15];
     char ip_mask[15];
-    char* rozhranie;
+    char* rozhranie = NULL;
     int count = 0;
     char* separatedText[20];
     char tempString[strlen(jsonMessage) + 1];
@@ -102,18 +102,27 @@ char* jsonSet(char* jsonMessage) {
         token = strtok(NULL, "\"");
     }
 
+    int verifier = 0;
+
     for(int i=0; i<count; i++) {
         if(strstr(separatedText[i], "ROZHRANIE")!=NULL) {
             rozhranie = separatedText[i+2];
+            verifier++;
         }
         if(strstr(separatedText[i], "IP")!=NULL) {
             strcpy(ip_address, separatedText[i+2]);
             strcpy(ipCopy, separatedText[i+2]);
+            verifier++;
         }
         if(strstr(separatedText[i], "MASK")!=NULL) {
             strcpy(ip_mask, separatedText[i+2]);
             strcpy(ipMaskCopy, separatedText[i+2]);
+            verifier++;
         }
+    }
+
+    if(verifier != 3) {
+        return NULL;
     }
 
     printf("%s is ip", ip_address);
