@@ -37,25 +37,24 @@ char * httpResolver(char * message, int length, char * strToSend) {
         strToSend = httpResponse(response, strToSend);
         return strToSend;
     }
-    httpResponse(405, strToSend);
+    strToSend = httpResponse(405, strToSend);
     //free(StrtoSend);
     return strToSend;
 }
 
 char * httpResponse(int statusCode, char * messageToBeSent) {
-    int bodySize = 0;
+    int bodySize;
     if(messageToBeSent == NULL) {
         bodySize = 0;
     } else {
         bodySize = (int)(strlen(messageToBeSent) + 1);
     }
-    char tempMessage[bodySize];
+    char * tempMessage = malloc(bodySize);
     if(bodySize > 0) {
         strncpy(tempMessage, messageToBeSent, bodySize);
     }
 
     free(messageToBeSent);
-    messageToBeSent = NULL;
 
     int messageSize = 0;
     messageSize += strlen(SUPPORTED_HTTP); //excluding \0      "HTTP/1.1"
@@ -63,33 +62,50 @@ char * httpResponse(int statusCode, char * messageToBeSent) {
     switch(statusCode) {
         case 200:
             messageSize += strlen(HTTP_200);
+            messageSize += strlen(TEXT_JSON);
             break;
         case 404:
             messageSize += strlen(HTTP_404);
+            messageSize += strlen(TEXT_PLAIN);
+            bodySize = strlen(HTTP_404) + 1;
+            tempMessage = realloc(tempMessage, bodySize);
+            strncpy(tempMessage, HTTP_404, strlen(HTTP_404) +1);
             break;
         case 405:
             messageSize += strlen(HTTP_405);
+            messageSize += strlen(TEXT_PLAIN);
+            bodySize = strlen(HTTP_405) + 1;
+            tempMessage = realloc(tempMessage, bodySize);
+            strncpy(tempMessage, HTTP_405, strlen(HTTP_405) + 1);
             break;
         case 505:
             messageSize += strlen(HTTP_505);
+            messageSize += strlen(TEXT_PLAIN);
+            bodySize = strlen(HTTP_505) + 1;
+            tempMessage = realloc(tempMessage, bodySize);
+            strncpy(tempMessage, HTTP_505, strlen(HTTP_505) + 1);
             break;
         default:
             messageSize += strlen(HTTP_400);
+            messageSize += strlen(TEXT_PLAIN);
+            bodySize = strlen(HTTP_400) + 1;
+            tempMessage = realloc(tempMessage, bodySize);
+            strncpy(tempMessage, HTTP_400, strlen(HTTP_400) + 1);
             break;
     }
     messageSize += 2;  //\r\n   //end of start line
 
+    char temp[100];
+
     messageSize += strlen(CONTENT_TYPE);
-    messageSize += strlen(TEXT_JSON);
     messageSize += 2; //\r\n end of content type
 
     messageSize += strlen(CONTENT_LENGTH);
-    char temp[100];
     sprintf(temp, "%d", bodySize - 1);
-    messageSize += (int)strlen(temp);
+    messageSize += (int) strlen(temp);
     messageSize += 2;    //\r\n
-    messageSize += 2;  //\r\n      blank line
     messageSize += bodySize;
+    messageSize += 2;  //\r\n      blank line
     messageToBeSent = malloc(messageSize);
     memset(messageToBeSent, 0, messageSize);
     //messageToBeSent = calloc(0, messageSize);
@@ -115,17 +131,21 @@ char * httpResponse(int statusCode, char * messageToBeSent) {
     strcat(messageToBeSent, "\r\n");    //end if start line
 
     strcat(messageToBeSent, CONTENT_TYPE);
-    strcat(messageToBeSent, TEXT_JSON);
+    if(statusCode == 200) {
+        strcat(messageToBeSent, TEXT_JSON);
+    } else {
+        strcat(messageToBeSent, TEXT_PLAIN);
+    }
     strcat(messageToBeSent, "\r\n");    //end of content type
 
     strcat(messageToBeSent, CONTENT_LENGTH);
     strcat(messageToBeSent, temp);
     strcat(messageToBeSent, "\r\n\r\n");    //end of content length + blank line
-
     strcat(messageToBeSent, tempMessage);
-
     //printf("messageSize: %d\n", messageSize);
     printf("Dobry vypis:\n>%s<\n", messageToBeSent);
+    free(tempMessage);
+    tempMessage = NULL;
     return messageToBeSent;
 }
 

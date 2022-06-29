@@ -85,8 +85,8 @@ char* jsonSet(char* jsonMessage) {
     struct sockaddr_in* addr;
     char* ipCopy = malloc(20*sizeof(char));
     char* ipMaskCopy = malloc(20*sizeof(char));
-    char ip_address[15];
-    char ip_mask[15];
+    char ip_address[20];
+    char ip_mask[20];
     char* rozhranie = NULL;
     int count = 0;
     char* separatedText[20];
@@ -163,7 +163,10 @@ char* jsonSet(char* jsonMessage) {
         /*Getting the Ip Address after Updating.*/
 
         /*clear ip_address buffer with 0x20- space*/
-        memset(ip_address, 0x20, 15);
+        memset(ip_address, 0x20, 20);
+        memset(ip_mask, 0x20, 20);
+        ioctl(fd, SIOCGIFNETMASK, &ifr);
+        strcpy(ip_mask, inet_ntoa(((struct sockaddr_in*)&ifr.ifr_addr)->sin_addr));
         ioctl(fd, SIOCGIFADDR, &ifr);
         /*Extracting Ip Address*/
         strcpy(ip_address, inet_ntoa(((struct sockaddr_in*)&ifr.ifr_addr)->sin_addr));
