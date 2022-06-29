@@ -13,7 +13,7 @@ char * httpResolver(char * message, int length, char * strToSend) {
     memset(StrtoSend, 0, strlen(testovaci) + 1);
     strncpy(StrtoSend, testovaci, strlen(testovaci) + 1);
      */
-    printf("zaciatok:>%s<\n", strToSend);
+    printf("zaciatok:>%s<\n", message);
 
     char tempMessage[length];
     int response = 0;
@@ -188,8 +188,7 @@ char * postResolver(char * message, int length, int * response, char * strToSend
     printf("POST body length: %d\n", bodyLength);
 
     char * bodyFounder = strstr(lengthDelimiter, "\r\n\r\n");
-    bodyFounder += 4;                                               //posun o 4 znaky na zaciatok tela spravy
-
+    bodyFounder += 4;//posun o 4 znaky na zaciatok tela spravy
 
     strToSend = malloc(strlen(bodyFounder) + 1);
     strncpy(strToSend, bodyFounder, strlen(bodyFounder) + 1);

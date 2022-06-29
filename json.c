@@ -90,8 +90,11 @@ char* jsonSet(char* jsonMessage) {
     char* rozhranie;
     int count = 0;
     char* separatedText[20];
+    char tempString[strlen(jsonMessage) + 1];
 
-    char* token = strtok(jsonMessage, "\"");
+    strncpy(tempString, jsonMessage, strlen(jsonMessage) + 1);
+
+    char* token = strtok(tempString, "\"");
     while(token != NULL) {
         printf("%s\n", token);
         separatedText[count] = token;
@@ -159,9 +162,21 @@ char* jsonSet(char* jsonMessage) {
 
         printf("Updated IP Address is: %s\n", ip_address);
 
-        memset(jsonMessage, 0, sizeof(jsonMessage));
+        int bodySize = 0;
+        bodySize += 7;     //{"ip":"
+        bodySize += (int)strlen(ip_address);
+        bodySize += 11;      //","maska":"
+        bodySize += (int) strlen(ip_mask);
+        bodySize += 15;      //","rozhranie":"
+        bodySize += (int) strlen(rozhranie);
+        bodySize += 3;      //"} + \0
+        jsonMessage = realloc(jsonMessage, bodySize);
+        memset(jsonMessage, 0, bodySize);
+
         strcat(jsonMessage, "{\"ip\":\"");
         strcat(jsonMessage, ip_address);
+        strcat(jsonMessage, "\",\"maska\":\"");
+        strcat(jsonMessage, ip_mask);
         strcat(jsonMessage, "\",\"rozhranie\":\"");
         strcat(jsonMessage, rozhranie);
         strcat(jsonMessage, "\"}");

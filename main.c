@@ -48,7 +48,7 @@ int main() {
             continue;
         }
         printf("NAcitalo socket:>%s<\n", buffer);
-        char * strToSend;
+        char * strToSend = NULL;
         strToSend = httpResolver(buffer, strlen(buffer), strToSend);
         printf("Vysledna sprava:>%s<\n", strToSend);
         //printf("Message from: (%s:%d):%s\n", inet_ntoa(addr.sin_addr), ntohs(addr.sin_port), buffer);
