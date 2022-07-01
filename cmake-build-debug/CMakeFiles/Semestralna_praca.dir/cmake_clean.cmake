@@ -1,9 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Semestralna_praca.dir/main.c.o"
   "CMakeFiles/Semestralna_praca.dir/http.c.o"
   "CMakeFiles/Semestralna_praca.dir/json.c.o"
-  "Semestralna_praca.pdb"
+  "CMakeFiles/Semestralna_praca.dir/main.c.o"
   "Semestralna_praca"
+  "Semestralna_praca.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

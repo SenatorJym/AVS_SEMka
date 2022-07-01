@@ -8,95 +8,93 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/root/tmp/tmp.D1UUjq4egp/cmake-build-debug"/>
+				<Option working_dir="/tmp/tmp.0FX83yZW1W/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/root/tmp/tmp.D1UUjq4egp/cmake-build-debug"/>
+				<Option working_dir="/tmp/tmp.0FX83yZW1W/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="Semestralna_praca">
-				<Option output="/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Semestralna_praca" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/root/tmp/tmp.D1UUjq4egp/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 Semestralna_praca"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="Semestralna_praca/fast">
-				<Option output="/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Semestralna_praca" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/root/tmp/tmp.D1UUjq4egp/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 Semestralna_praca/fast"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/root/tmp/tmp.D1UUjq4egp/cmake-build-debug"/>
+				<Option working_dir="/tmp/tmp.0FX83yZW1W/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Semestralna_praca">
+				<Option output="/tmp/tmp.0FX83yZW1W/cmake-build-debug/Semestralna_praca" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.0FX83yZW1W/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 Semestralna_praca"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Semestralna_praca/fast">
+				<Option output="/tmp/tmp.0FX83yZW1W/cmake-build-debug/Semestralna_praca" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.0FX83yZW1W/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 Semestralna_praca/fast"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/tmp/tmp.0FX83yZW1W/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/root/tmp/tmp.D1UUjq4egp/defines.h">
+		<Unit filename="/tmp/tmp.0FX83yZW1W/defines.h">
 			<Option target="Semestralna_praca"/>
 		</Unit>
-		<Unit filename="/root/tmp/tmp.D1UUjq4egp/http.c">
+		<Unit filename="/tmp/tmp.0FX83yZW1W/http.c">
 			<Option target="Semestralna_praca"/>
 		</Unit>
-		<Unit filename="/root/tmp/tmp.D1UUjq4egp/http.h">
+		<Unit filename="/tmp/tmp.0FX83yZW1W/http.h">
 			<Option target="Semestralna_praca"/>
 		</Unit>
-		<Unit filename="/root/tmp/tmp.D1UUjq4egp/json.c">
+		<Unit filename="/tmp/tmp.0FX83yZW1W/json.c">
 			<Option target="Semestralna_praca"/>
 		</Unit>
-		<Unit filename="/root/tmp/tmp.D1UUjq4egp/json.h">
+		<Unit filename="/tmp/tmp.0FX83yZW1W/json.h">
 			<Option target="Semestralna_praca"/>
 		</Unit>
-		<Unit filename="/root/tmp/tmp.D1UUjq4egp/main.c">
+		<Unit filename="/tmp/tmp.0FX83yZW1W/main.c">
 			<Option target="Semestralna_praca"/>
 		</Unit>
-		<Unit filename="/root/tmp/tmp.D1UUjq4egp/CMakeLists.txt">
+		<Unit filename="/tmp/tmp.0FX83yZW1W/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/root/tmp/tmp.D1UUjq4egp/http.c" "/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/CMakeFiles/Semestralna_praca.dir/http.c.o"
-  "/root/tmp/tmp.D1UUjq4egp/json.c" "/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/CMakeFiles/Semestralna_praca.dir/json.c.o"
-  "/root/tmp/tmp.D1UUjq4egp/main.c" "/root/tmp/tmp.D1UUjq4egp/cmake-build-debug/CMakeFiles/Semestralna_praca.dir/main.c.o"
+  "/tmp/tmp.0FX83yZW1W/http.c" "/tmp/tmp.0FX83yZW1W/cmake-build-debug/CMakeFiles/Semestralna_praca.dir/http.c.o"
+  "/tmp/tmp.0FX83yZW1W/json.c" "/tmp/tmp.0FX83yZW1W/cmake-build-debug/CMakeFiles/Semestralna_praca.dir/json.c.o"
+  "/tmp/tmp.0FX83yZW1W/main.c" "/tmp/tmp.0FX83yZW1W/cmake-build-debug/CMakeFiles/Semestralna_praca.dir/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

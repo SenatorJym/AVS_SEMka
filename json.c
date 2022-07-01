@@ -1,6 +1,7 @@
 #include "defines.h"
 //34
 
+/*this method returns a single interface line and maps it into json format */
 void convertToJson(char name[], char protocol[], char address[], char json[], int firstCycle) {
     char interface [100] = "";
 
@@ -21,6 +22,7 @@ void convertToJson(char name[], char protocol[], char address[], char json[], in
     memset(interface, 0, sizeof(interface));
 }
 
+/* this method returns whole Json body in which are listed interfaces, IP address, IPv4/6 and names of interfaces */
 char * jsonGet(char* json, int * sizeOfMessage) {
     json = malloc(1000 * sizeof(char));
     json[0]=0;
@@ -57,6 +59,8 @@ char * jsonGet(char* json, int * sizeOfMessage) {
     return json;
 }
 
+/*this method validates the IP address, if the IP address is OK, it returns 1. if there are any mistakes
+ * it returns 0*/
 int validate_ip(char *ip) {
     int i, num, dots = 0;
     char *ptr;
@@ -79,10 +83,13 @@ int validate_ip(char *ip) {
     return 1;
 }
 
+/*this method returns and sets IP address and net mask on desired interface, if there is an error with
+ * IP address format or other issues, it returns NULL*/
 char* jsonSet(char* jsonMessage) {
     int fd;
     struct ifreq ifr;
     struct sockaddr_in* addr;
+    struct sockaddr_in* addrMask;
     char* ipCopy = malloc(20*sizeof(char));
     char* ipMaskCopy = malloc(20*sizeof(char));
     char ip_address[20];
@@ -92,8 +99,10 @@ char* jsonSet(char* jsonMessage) {
     char* separatedText[20];
     char tempString[strlen(jsonMessage) + 1];
 
+    /*copy jsonMessage into temp message */
     strncpy(tempString, jsonMessage, strlen(jsonMessage) + 1);
 
+    /* cuts message into blocks of text via " separator*/
     char* token = strtok(tempString, "\"");
     while(token != NULL) {
         printf("%s\n", token);
@@ -105,28 +114,32 @@ char* jsonSet(char* jsonMessage) {
     int verifier = 0;
 
     for(int i=0; i<count; i++) {
+        /*load name of interface into variables */
         if(strstr(separatedText[i], "ROZHRANIE")!=NULL) {
             rozhranie = separatedText[i+2];
             verifier++;
         }
+        /*load IP into variables */
         if(strstr(separatedText[i], "IP")!=NULL) {
             strcpy(ip_address, separatedText[i+2]);
             strcpy(ipCopy, separatedText[i+2]);
             verifier++;
         }
+        /*load IP mask into variables */
         if(strstr(separatedText[i], "MASK")!=NULL) {
             strcpy(ip_mask, separatedText[i+2]);
             strcpy(ipMaskCopy, separatedText[i+2]);
             verifier++;
         }
     }
-
+    /* verifier checks, if all of the parameters were filled */
     if(verifier != 3) {
         return NULL;
     }
 
     printf("%s is ip", ip_address);
     printf("%s is interface", rozhranie);
+    printf("%s je maska", ip_mask);
 
     if((validate_ip(ipCopy) == 0) && (validate_ip(ipMaskCopy) == 0)) {
         return NULL;
@@ -140,40 +153,72 @@ char* jsonSet(char* jsonMessage) {
         /*AF_INET - to define IPv4 Address type.*/
         ifr.ifr_addr.sa_family = AF_INET;
 
-        /*eth0 - define the ifr_name - port name
+        /* define the ifr_name - port name
         where network attached.*/
         memcpy(ifr.ifr_name, rozhranie, IFNAMSIZ - 1);
 
         /*defining the sockaddr_in*/
         addr = (struct sockaddr_in*)&ifr.ifr_addr;
 
-
         /*convert ip address in correct format to write*/
         inet_pton(AF_INET, ip_address, &addr->sin_addr);
-        ioctl(fd, SIOCSIFADDR, &ifr);
 
-        inet_pton(AF_INET, ip_mask, &addr->sin_addr);
-        ioctl(fd, SIOCSIFNETMASK, &ifr);
         /*Setting the Ip Address using ioctl*/
+        ioctl(fd, SIOCSIFADDR, &ifr);
 
         close(fd);
 
         printf("IP Address updated sucessfully.\n");
-
         /*Getting the Ip Address after Updating.*/
 
         /*clear ip_address buffer with 0x20- space*/
         memset(ip_address, 0x20, 20);
-        memset(ip_mask, 0x20, 20);
-        ioctl(fd, SIOCGIFNETMASK, &ifr);
-        strcpy(ip_mask, inet_ntoa(((struct sockaddr_in*)&ifr.ifr_addr)->sin_addr));
-        ioctl(fd, SIOCGIFADDR, &ifr);
-        /*Extracting Ip Address*/
+        printf("IP je: %s", ip_address);
+        /*load ip_address from changed interface*/
         strcpy(ip_address, inet_ntoa(((struct sockaddr_in*)&ifr.ifr_addr)->sin_addr));
+        printf("IP je: %s", ip_address);
+
+        /*AF_INET - to define network interface IPv4*/
+        /*Creating soket for it.*/
+        fd = socket(AF_INET, SOCK_DGRAM, 0);
+
+        /*AF_INET - to define IPv4 Address type.*/
+        ifr.ifr_addr.sa_family = AF_INET;
+
+        /* define the ifr_name - port name
+        where network attached.*/
+        memcpy(ifr.ifr_name, rozhranie, IFNAMSIZ - 1);
+
+        /*defining the sockaddr_in*/
+        addr = (struct sockaddr_in*)&ifr.ifr_addr;
+
+        /*convert net mask in correct format to write*/
+        inet_pton(AF_INET, ip_mask, &addr->sin_addr);
+
+        /*Setting the net mask using ioctl*/
+        ioctl(fd, SIOCSIFNETMASK, &ifr);
+
+        close(fd);
+
+        /*Getting the net mask after Updating.*/
+
+        /*clear ip_mask buffer with 0x20- space*/
+        memset(ip_mask, 0x20, 20);
+
+        printf("%s je maska\n", ip_mask);
+        /*load ip_address from changed interface*/
+        strcpy(ip_mask, inet_ntoa(((struct sockaddr_in*)&ifr.ifr_addr)->sin_addr));
+
+        printf("%s je maska\n", ip_mask);
+
+        /*load interface name*/
         rozhranie = ifr.ifr_name;
+
+
 
         printf("Updated IP Address is: %s\n", ip_address);
 
+        /*realloc memory of jsonMessage for the size of loaded information from interface */
         int bodySize = 0;
         bodySize += 7;     //{"ip":"
         bodySize += (int)strlen(ip_address);
@@ -183,8 +228,11 @@ char* jsonSet(char* jsonMessage) {
         bodySize += (int) strlen(rozhranie);
         bodySize += 3;      //"} + \0
         jsonMessage = realloc(jsonMessage, bodySize);
+
+        /* set all characters in message to 0 */
         memset(jsonMessage, 0, bodySize);
 
+        /*load new information about interface into jsonMessage */
         strcat(jsonMessage, "{\"ip\":\"");
         strcat(jsonMessage, ip_address);
         strcat(jsonMessage, "\",\"maska\":\"");
