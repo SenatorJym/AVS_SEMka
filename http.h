@@ -23,11 +23,33 @@ char * httpResolver(char * message, int length, char * strToSend);
  */
 char * httpResponse(int statusCode, char * messageToBeSent);
 /**
- * Will be called if the request method is GET. Will determine if the incoming request is valid. If not will set
- * response to 400
+ * Will be called if the request method is GET. Will determine if the incoming request is valid.
+ * @param message Received http request
+ * @param length Size of request
+ * @return Returns corresponding HTTP status code
  * */
 int getResolver(char * message, int length);
+/**
+ * Checks if the POST request is valid, then passes the body of the request to change IP parameters. Will set response
+ * accordingly.
+ * @param message Received HTTP request
+ * @param length Length of HTTP request
+ * @param response Will set HTTP status code
+ * @param strToSend Place for the body that will be generated
+ * @return Returns pointer to the allocated memory containing body for the response
+ * */
 char * postResolver(char * message, int length, int * response, char * strToSend);
+/**
+ * Checks if the request line in HTTP request is valid. Returns corresponding HTTP status code
+ * @param requestLine String with request line
+ * @param length Length of the request line
+ * @return HTTP status code
+ * */
 int requestLineVerifier(char * requestLine, int length);
-int uriVerifier(char * uri, int length);
+/**
+ * Verifies the uri.
+ * @param uri Uri to be verified
+ * @return SUCCESS if correct ERROR if not
+ * */
+int uriVerifier(char * uri);
 #endif //SEMESTRALNA_PRACA_HTTP_H

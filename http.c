@@ -233,7 +233,7 @@ int requestLineVerifier(char * requestLine, int length) {
     char * token = NULL;
     token = strtok(tmpString, " ");
     token = strtok(NULL, " ");
-    if(uriVerifier(token, (int)strlen(token)) == ERROR) {
+    if(uriVerifier(token) == ERROR) {
         printf("wrong_uri\n");
         return 404;
     }
@@ -246,7 +246,7 @@ int requestLineVerifier(char * requestLine, int length) {
     return 200;
 }
 
-int uriVerifier(char * uri, int length) {
+int uriVerifier(char * uri) {
     if(strncmp(uri, VALID_URI, strlen(VALID_URI)) == 0) {
         return SUCCESS;
     }
