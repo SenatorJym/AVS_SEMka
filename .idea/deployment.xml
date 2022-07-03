@@ -2,36 +2,14 @@
 <project version="4">
   <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="AVS_Root (71e8a6bf-e3bc-4654-9a89-99aedc1e856b)">
+      <paths name="Remote Host (d7328e9e-5260-4d69-a724-a9a823083216)">
         <serverdata>
           <mappings>
-            <mapping deploy="/tmp/tmp.D1UUjq4egp" local="$PROJECT_DIR$" />
+            <mapping deploy="/tmp/tmp.0FX83yZW1W" local="$PROJECT_DIR$" />
           </mappings>
           <excludedPaths>
             <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
-            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
           </excludedPaths>
-        </serverdata>
-      </paths>
-      <paths name="AVS_VM (e5ce94a7-15e1-48d8-809b-d1c98e112d1c)">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="Frios2 (5cf24fcd-0fab-4647-a621-ba998c05a4d1)">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="frios (2a649ef3-7d6d-4d12-abee-617a78143d0e)">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
         </serverdata>
       </paths>
     </serverData>
