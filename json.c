@@ -1,7 +1,6 @@
 #include "defines.h"
 //34
 
-/*this method returns a single interface line and maps it into json format */
 void convertToJson(char name[], char protocol[], char address[], char json[], int firstCycle) {
     char interface [100] = "";
 
@@ -83,11 +82,9 @@ int validate_ip(char *ip) {
     return 1;
 }
 
-/*this method returns and sets IP address and net mask on desired interface, if there is an error with
- * IP address format or other issues, it returns NULL*/
 char* jsonSet(char* jsonMessage) {
     int fd;
-    struct ifreq ifr;
+    struct ifreq ifr, ifr1;
     struct sockaddr_in* addr;
     struct sockaddr_in* addrMask;
     char* ipCopy = malloc(20*sizeof(char));
@@ -151,20 +148,20 @@ char* jsonSet(char* jsonMessage) {
         fd = socket(AF_INET, SOCK_DGRAM, 0);
 
         /*AF_INET - to define IPv4 Address type.*/
-        ifr.ifr_addr.sa_family = AF_INET;
+        ifr1.ifr_addr.sa_family = AF_INET;
 
         /* define the ifr_name - port name
         where network attached.*/
-        memcpy(ifr.ifr_name, rozhranie, IFNAMSIZ - 1);
+        memcpy(ifr1.ifr_name, rozhranie, IFNAMSIZ - 1);
 
         /*defining the sockaddr_in*/
-        addr = (struct sockaddr_in*)&ifr.ifr_addr;
+        addr = (struct sockaddr_in*)&ifr1.ifr_addr;
 
         /*convert ip address in correct format to write*/
         inet_pton(AF_INET, ip_address, &addr->sin_addr);
 
         /*Setting the Ip Address using ioctl*/
-        ioctl(fd, SIOCSIFADDR, &ifr);
+        ioctl(fd, SIOCSIFADDR, &ifr1);
 
         close(fd);
 
@@ -175,7 +172,7 @@ char* jsonSet(char* jsonMessage) {
         memset(ip_address, 0x20, 20);
         printf("IP je: %s", ip_address);
         /*load ip_address from changed interface*/
-        strcpy(ip_address, inet_ntoa(((struct sockaddr_in*)&ifr.ifr_addr)->sin_addr));
+        strcpy(ip_address, inet_ntoa(((struct sockaddr_in*)&ifr1.ifr_addr)->sin_addr));
         printf("IP je: %s", ip_address);
 
         /*AF_INET - to define network interface IPv4*/
