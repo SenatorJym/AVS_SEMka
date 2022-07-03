@@ -36,7 +36,7 @@ int main() {
     int clientSock;
 
     int test = 0;
-    while(test == 0){
+    while(test < 10){
         memset(buffer,0, sizeof(buffer));
         memset(&addr,0, sizeof(addr));
         socklen_t addrlen = sizeof(addr);

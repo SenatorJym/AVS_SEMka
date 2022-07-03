@@ -21,7 +21,7 @@ char * httpResolver(char * message, int length, char * strToSend) {
     char * method = strtok(tempMessage, " ");     //extract method from message
     if(strncmp(method, GET, 3) == 0) {
         printf("GET\n");
-        getResolver(message, length, &response);
+        response = getResolver(message, length);
 
         int messageSize = 0;
         strToSend = jsonGet(strToSend, &messageSize);
@@ -149,22 +149,22 @@ char * httpResponse(int statusCode, char * messageToBeSent) {
     return messageToBeSent;
 }
 
-int getResolver(char * message, int length, int * response) {
+int getResolver(char * message, int length) {
     char tempMessage[length];
     strncpy(tempMessage, message, length);
     //printf("tempMessage>%s<\n", tempMessage);
     char * delimiterPointer = strstr(tempMessage, HTTP_DELIMITER);
     if(delimiterPointer == NULL) {
-        *response = 400;
         printf("Delimiter pointer");
-        return ERROR;
+        return 400;
     }
     *delimiterPointer = '\0';     //extract request line from request
     int rqLineLength = (int)strnlen(tempMessage, length);
-    if(requestLineVerifier(tempMessage, rqLineLength, response) == 1) {
+    if(requestLineVerifier(tempMessage, rqLineLength) != 200) {
         printf("not valid request line\n");
+        return 400;
     }
-    return SUCCESS;
+    return 200;
 }
 
 char * postResolver(char * message, int length, int * response, char * strToSend) {
@@ -180,7 +180,7 @@ char * postResolver(char * message, int length, int * response, char * strToSend
     }
     *delimiterPointer = '\0';     //extract request line from request
     int rqLineLength = (int)strnlen(tempMessage, length);
-    if(requestLineVerifier(tempMessage, rqLineLength, response) == 1) {
+    if((*response = requestLineVerifier(tempMessage, rqLineLength)) != 200) {
         printf("not valid request line\n");
     }
     strncpy(tempMessage, message, length);
@@ -227,7 +227,7 @@ char * postResolver(char * message, int length, int * response, char * strToSend
     return strToSend;
 }
 
-int requestLineVerifier(char * requestLine, int length, int * response) {
+int requestLineVerifier(char * requestLine, int length) {
     char tmpString[length];
     strncpy(tmpString, requestLine, length);
     char * token = NULL;
@@ -235,18 +235,15 @@ int requestLineVerifier(char * requestLine, int length, int * response) {
     token = strtok(NULL, " ");
     if(uriVerifier(token, (int)strlen(token)) == ERROR) {
         printf("wrong_uri\n");
-        *response = 404;
-        return ERROR;
+        return 404;
     }
     token = strtok(NULL, " ");
     if(strncmp(token, SUPPORTED_HTTP, strlen(SUPPORTED_HTTP)) != SUCCESS) {
         printf("http not supported");
-        *response = 505;
-        return ERROR;
+        return 505;
     }
     printf("Request line: >%s<\n", requestLine);
-    *response = 200;
-    return SUCCESS;
+    return 200;
 }
 
 int uriVerifier(char * uri, int length) {
