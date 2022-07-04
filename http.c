@@ -33,7 +33,10 @@ char * httpResolver(char * message, int length, char * strToSend) {
     }
     if(strncmp(method, POST, 4) == 0) {
         printf("POST");
-        strToSend = postResolver(message, length, &response, strToSend);
+        if((strToSend = postResolver(message, length, &response, strToSend)) == NULL) {
+            strToSend = httpResponse(response, strToSend);
+            return strToSend;
+        }
         if(strncmp(strToSend, API_OFF, strlen(API_OFF)) == 0) {
             strncpy(message, API_OFF, strlen(API_OFF) + 1);
         }
