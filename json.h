@@ -1,6 +1,6 @@
-//
-// Created by Senat on 26. 6. 2022.
-//
+/**
+ * Header file containing functions associated with json process
+ */
 
 #ifndef SEMESTRALNA_PRACA_JSON_H
 #define SEMESTRALNA_PRACA_JSON_H
