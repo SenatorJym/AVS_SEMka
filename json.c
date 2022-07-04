@@ -111,19 +111,26 @@ char* jsonSet(char* jsonMessage) {
     int verifier = 0;
 
     for(int i=0; i<count; i++) {
+        if(strstr(separatedText[i], "APIOFF") != NULL) {
+            jsonMessage = realloc(jsonMessage, 1);
+            *jsonMessage = '\0';
+            free(ipCopy);
+            free(ipMaskCopy);
+            return jsonMessage;
+        }
         /*load name of interface into variables */
-        if(strstr(separatedText[i], "ROZHRANIE")!=NULL) {
+        if(strstr(separatedText[i], "ROZHRANIE") != NULL) {
             rozhranie = separatedText[i+2];
             verifier++;
         }
         /*load IP into variables */
-        if(strstr(separatedText[i], "IP")!=NULL) {
+        if(strstr(separatedText[i], "IP") != NULL) {
             strcpy(ip_address, separatedText[i+2]);
             strcpy(ipCopy, separatedText[i+2]);
             verifier++;
         }
         /*load IP mask into variables */
-        if(strstr(separatedText[i], "MASK")!=NULL) {
+        if(strstr(separatedText[i], "MASK") != NULL) {
             strcpy(ip_mask, separatedText[i+2]);
             strcpy(ipMaskCopy, separatedText[i+2]);
             verifier++;

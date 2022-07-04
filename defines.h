@@ -16,6 +16,7 @@
 #define HTTP_405 "405 Method Not Allowed"
 #define HTTP_505 "505 HTTP Version Not Supported"
 #define HTTP_400 "400 Bad Request"
+#define API_OFF "{\"API WILL BE SHUT DOWN\"}"
 #define CONTENT_TYPE "Content-Type: "
 #define TEXT_PLAIN "text/plain"
 #define TEXT_JSON "application/json"

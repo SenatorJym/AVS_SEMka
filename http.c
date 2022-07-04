@@ -34,7 +34,11 @@ char * httpResolver(char * message, int length, char * strToSend) {
     if(strncmp(method, POST, 4) == 0) {
         printf("POST");
         strToSend = postResolver(message, length, &response, strToSend);
+        if(strncmp(strToSend, API_OFF, strlen(API_OFF)) == 0) {
+            strncpy(message, API_OFF, strlen(API_OFF) + 1);
+        }
         strToSend = httpResponse(response, strToSend);
+
         return strToSend;
     }
     strToSend = httpResponse(405, strToSend);
@@ -219,10 +223,16 @@ char * postResolver(char * message, int length, int * response, char * strToSend
 
     strToSend = malloc(strlen(bodyFounder) + 1);
     strncpy(strToSend, bodyFounder, strlen(bodyFounder) + 1);
-    if((strToSend = jsonSet(strToSend)) == NULL) {
+    strToSend = jsonSet(strToSend);
+
+    if((strToSend) == NULL) {
         printf("Wrong content.\n");
         *response = 400;
         return NULL;
+    } else if(*strToSend == '\0') {
+        printf("Turning off\n");
+        strToSend = realloc(strToSend, strlen(API_OFF) + 1);
+        strncpy(strToSend, API_OFF, strlen(API_OFF) + 1);
     }
     return strToSend;
 }

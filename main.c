@@ -36,7 +36,7 @@ int main() {
     int clientSock;
 
     int test = 0;
-    while(test < 10){
+    while(test == 0){
         memset(buffer,0, sizeof(buffer));
         memset(&addr,0, sizeof(addr));
         socklen_t addrlen = sizeof(addr);
@@ -50,6 +50,9 @@ int main() {
         printf("NAcitalo socket:>%s<\n", buffer);
         char * strToSend = NULL;
         strToSend = httpResolver(buffer, strlen(buffer), strToSend);
+        if(strncmp(API_OFF, buffer, strlen(API_OFF)) == 0) {
+            test++;
+        }
         printf("Vysledna sprava:>%s<\n", strToSend);
         //printf("Message from: (%s:%d):%s\n", inet_ntoa(addr.sin_addr), ntohs(addr.sin_port), buffer);
         printf("%d\n", strlen(strToSend));
@@ -57,7 +60,6 @@ int main() {
         //write(clientSock, hello , strlen(hello));
         free(strToSend);
         close(clientSock);
-        test++;
     }
     return 0;
 }

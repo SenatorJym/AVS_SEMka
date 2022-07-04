@@ -7,6 +7,10 @@
           <mappings>
             <mapping deploy="/tmp/tmp.9kHIy2xDLL" local="$PROJECT_DIR$" />
           </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
+          </excludedPaths>
         </serverdata>
       </paths>
       <paths name="AVS_VM (e5ce94a7-15e1-48d8-809b-d1c98e112d1c)">
