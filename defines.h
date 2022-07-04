@@ -1,6 +1,3 @@
-/**
- * Header file containing mos of the needed defines and includes
- */
 
 #ifndef SEMESTRALNA_PRACA_DEFINES_H
 #define SEMESTRALNA_PRACA_DEFINES_H

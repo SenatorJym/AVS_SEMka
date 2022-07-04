@@ -1,6 +1,3 @@
-/**
- * Header file containing functions associated with json process
- */
 
 #ifndef SEMESTRALNA_PRACA_JSON_H
 #define SEMESTRALNA_PRACA_JSON_H

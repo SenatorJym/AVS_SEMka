@@ -1,6 +1,4 @@
-/**
- * Header file with necessary functions required for correct HTTP process
- */
+
 #ifndef SEMESTRALNA_PRACA_HTTP_H
 #define SEMESTRALNA_PRACA_HTTP_H
 #include "defines.h"
